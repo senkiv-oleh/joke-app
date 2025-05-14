@@ -47,14 +47,19 @@ src/
 │   ├── Controls.tsx
 │   ├── JokeCard.tsx
 │   └── JokeList.tsx
+├── constants/
+|   ├── constants.ts
+│   └── urls.ts
 |── hooks/
 │   └── useJokes.ts
 |── services/
 │   └── jokeService.ts
-├── utils/
-│   └── storage.ts
 ├── types/
-│   └── Joke.ts
+|   ├── controls.ts
+│   └── joke.ts
+├── utils/
+│   ├── helpers.ts
+│   └── storage.ts
 ├── App.tsx
 ├── index.tsx
 └── reportWebVitals.ts
