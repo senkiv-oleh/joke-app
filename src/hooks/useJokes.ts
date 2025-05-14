@@ -9,6 +9,7 @@ import {
   isUserJoke
 } from "../utils/storage";
 import { getUniqueJokes } from "../utils/helpers";
+import { TEN_RANDOM_JOKES } from "../constants/constants";
 
 export const useJokes = () => {
   const [jokes, setJokes] = useState<Joke[]>([]);
@@ -26,18 +27,22 @@ export const useJokes = () => {
 
   const handleLoadMore = async () => {
     const existingIds = new Set(jokes.map(j => j.id));
-    const result: Joke[] = [...jokes];
+    const result: Joke[] = [];
 
-    while (result.length < jokes.length + 10) {
+    while (result.length < TEN_RANDOM_JOKES) {
       const newBatch = await getTenJokes();
-      const unique = newBatch.filter((joke: Joke) => !existingIds.has(joke.id));
-      unique.forEach((joke: Joke) => {
-        existingIds.add(joke.id);
-        result.push(joke);
-      });
-    }
 
-    setJokes(result);
+      const unique = newBatch.filter(
+        (joke: Joke) =>
+          !existingIds.has(joke.id) && !result.some(j => j.id === joke.id)
+      );
+
+      result.push(...unique.slice(0, TEN_RANDOM_JOKES - result.length));
+      unique.forEach((j: Joke) => existingIds.add(j.id));
+
+      if (newBatch.length === 0 || unique.length === 0) break;
+    }
+    setJokes(prev => [...prev, ...result]);
   };
 
   const handleAdd = async () => {

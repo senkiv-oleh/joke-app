@@ -1,14 +1,12 @@
-// utils/storage.ts
 import { Joke } from "../types/joke";
+import { STORAGE_KEY } from "../constants/constants";
 
-const STORAGE_KEY = "user_jokes";
-
-const getStoredJokes  = (): Joke[] => {
+const getStoredJokes = (): Joke[] => {
   const data = localStorage.getItem(STORAGE_KEY);
   return data ? JSON.parse(data) : [];
 };
 
-const setStoredJokes  = (jokes: Joke[]) => {
+const setStoredJokes = (jokes: Joke[]) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(jokes));
 };
 

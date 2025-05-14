@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { Card, CardContent, Typography, Stack, Button } from "@mui/material";
 import { Joke } from "../types/joke";
+import { JokeProps } from "../types/controls";
 
-interface JokeListProps {
-  joke: Joke;
-  onDelete: (id: number) => void;
-  onRefresh: (id: number) => void;
-}
+type JokeCardProps = JokeProps & { joke: Joke };
 
-const JokeCard: React.FC<JokeListProps> = ({ joke, onDelete, onRefresh }) => {
+const JokeCard: React.FC<JokeCardProps> = ({ joke, onDelete, onRefresh }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const handleMouseEnter = () => {

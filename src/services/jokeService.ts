@@ -1,11 +1,15 @@
-const BASE_URL = "https://official-joke-api.appspot.com";
+import {
+  API_URL,
+  RANDOM_JOKE_ENDPOINT,
+  RANDOM_TEN_JOKES_URL
+} from "../constants/urls";
 
-export const getTenJokes = async () => {
-  const res = await fetch(`${BASE_URL}/jokes/ten`);
+export const getRandomJoke = async () => {
+  const res = await fetch(`${API_URL}${RANDOM_JOKE_ENDPOINT}`);
   return res.json();
 };
 
-export const getRandomJoke = async () => {
-  const res = await fetch(`${BASE_URL}/jokes/random`);
+export const getTenJokes = async () => {
+  const res = await fetch(`${API_URL}${RANDOM_TEN_JOKES_URL}`);
   return res.json();
 };
