@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Stack, Typography } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 import JokeList from "./components/JokeList";
 import Controls from "./components/Controls";
 import { useJokes } from "./hooks/useJokes";
@@ -15,7 +16,14 @@ const App: React.FC = () => {
 
   return (
     <Stack>
-      <Container style={{ padding: "20px" }}>
+      <Container
+        style={{
+          padding: "20px",
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "column"
+        }}
+      >
         <Typography
           variant="h4"
           align="center"
@@ -24,11 +32,13 @@ const App: React.FC = () => {
         >
           Joke LIST
         </Typography>
-        <JokeList
-          jokes={jokes}
-          onDelete={handleDelete}
-          onRefresh={handleRefresh}
-        />{" "}
+        {jokes.length > 0
+          ? <JokeList
+              jokes={jokes}
+              onDelete={handleDelete}
+              onRefresh={handleRefresh}
+            />
+          : <CircularProgress color="secondary" />}
       </Container>
 
       <Controls onLoadMore={handleLoadMore} onAdd={handleAdd} />
