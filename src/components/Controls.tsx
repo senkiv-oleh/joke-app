@@ -1,8 +1,12 @@
-// components/Controls.tsx
 import React from "react";
 import { Stack, Button } from "@mui/material";
 
-const Controls = ({ onLoadMore, onAdd }) => {
+interface ControlsProps {
+  onLoadMore: () => void;
+  onAdd: () => void;
+}
+
+const Controls: React.FC<ControlsProps> = ({ onLoadMore, onAdd }) => {
   return (
     <Stack direction="row" spacing={2} justifyContent="center" mt={2}>
       <Button variant="contained" color="primary" onClick={onLoadMore}>

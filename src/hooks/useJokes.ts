@@ -1,4 +1,3 @@
-// hooks/useJokes.ts
 import { useEffect, useState } from "react";
 import { Joke } from "../types/joke";
 import { getRandomJoke, getTenJokes } from "../services/jokeService.js";
@@ -33,8 +32,8 @@ export const useJokes = () => {
 
     while (result.length < jokes.length + 10) {
       const newBatch = await getTenJokes();
-      const unique = newBatch.filter(joke => !existingIds.has(joke.id));
-      unique.forEach(joke => {
+      const unique = newBatch.filter((joke: Joke) => !existingIds.has(joke.id));
+      unique.forEach((joke: Joke) => {
         existingIds.add(joke.id);
         result.push(joke);
       });
@@ -52,7 +51,7 @@ export const useJokes = () => {
 
   const deleteJoke = (id: number) => {
     const updated = jokes.filter(joke => joke.id !== id);
-    saveUserJokes(getUserJokes().filter(joke => joke.id !== id));
+    saveUserJokes(getUserJokes().filter((joke: Joke) => joke.id !== id));
     setJokes(updated);
   };
 
