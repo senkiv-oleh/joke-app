@@ -12,7 +12,19 @@ const Controls: React.FC<ControlsProps> = ({ onLoadMore, onAdd }) => {
       direction="row"
       spacing={2}
       justifyContent="center"
-      style={{ gap: "10px", paddingBottom: "20px" }}
+      sx={{
+        gap: "10px",
+        paddingBottom: "20px",
+        position: "sticky",
+        backgroundColor: "#fff",
+        zIndex: 1,
+        width: "100%",
+        paddingTop: "20px",
+
+        bottom: 0,
+        left: 0,
+        right: 0
+      }}
     >
       <Button
         variant="contained"

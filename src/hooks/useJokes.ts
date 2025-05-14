@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import { Joke } from "../types/joke";
-import { getRandomJoke, getTenJokes } from "../services/jokeService.js";
-import { getUserJokes, saveUserJokes } from "../utils/storage";
+import { getRandomJoke, getTenJokes } from "../services/jokeService";
+import {
+  getUserJokes,
+  addUserJoke,
+  removeUserJoke,
+  replaceUserJoke,
+  isUserJoke
+} from "../utils/storage";
+import { getUniqueJokes } from "../utils/helpers";
 
 export const useJokes = () => {
   const [jokes, setJokes] = useState<Joke[]>([]);
@@ -17,16 +24,7 @@ export const useJokes = () => {
     loadInitial();
   }, []);
 
-  const getUniqueJokes = (jokeArr: Joke[], count: number): Joke[] => {
-    const map = new Map<number, Joke>();
-    for (let joke of jokeArr) {
-      map.set(joke.id, joke);
-      if (map.size >= count) break;
-    }
-    return Array.from(map.values());
-  };
-
-  const loadMore = async () => {
+  const handleLoadMore = async () => {
     const existingIds = new Set(jokes.map(j => j.id));
     const result: Joke[] = [...jokes];
 
@@ -42,24 +40,24 @@ export const useJokes = () => {
     setJokes(result);
   };
 
-  const addJoke = async () => {
+  const handleAdd = async () => {
     const newJoke = await getRandomJoke();
-    const updated = [newJoke, ...jokes];
-    saveUserJokes([newJoke, ...getUserJokes()]);
-    setJokes(updated);
+    addUserJoke(newJoke);
+    setJokes(prev => [...prev, newJoke]);
   };
 
-  const deleteJoke = (id: number) => {
-    const updated = jokes.filter(joke => joke.id !== id);
-    saveUserJokes(getUserJokes().filter((joke: Joke) => joke.id !== id));
-    setJokes(updated);
+  const handleDelete = (id: number) => {
+    removeUserJoke(id);
+    setJokes(prev => prev.filter(j => j.id !== id));
   };
 
-  const refreshJoke = async (id: number) => {
+  const handleRefresh = async (id: number) => {
     const newJoke = await getRandomJoke();
-    const updated = jokes.map(joke => (joke.id === id ? newJoke : joke));
-    setJokes(updated);
+    setJokes(prev => prev.map(j => (j.id === id ? newJoke : j)));
+    if (isUserJoke(id)) {
+      replaceUserJoke(id, newJoke);
+    }
   };
 
-  return { jokes, loadMore, addJoke, deleteJoke, refreshJoke };
+  return { jokes, handleLoadMore, handleAdd, handleDelete, handleRefresh };
 };

@@ -1,30 +1,37 @@
+// utils/storage.ts
 import { Joke } from "../types/joke";
 
 const STORAGE_KEY = "user_jokes";
 
-export const getUserJokes = () => {
+const getStoredJokes  = (): Joke[] => {
   const data = localStorage.getItem(STORAGE_KEY);
   return data ? JSON.parse(data) : [];
 };
 
-export const saveUserJokes = (jokes: Joke[]) => {
+const setStoredJokes  = (jokes: Joke[]) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(jokes));
 };
 
+export const getUserJokes = getStoredJokes;
+
 export const addUserJoke = (joke: Joke) => {
-  const current = getUserJokes();
-  const isDuplicate = current.some((j: Joke) => j.id === joke.id);
+  const current = getStoredJokes();
+  const isDuplicate = current.some(j => j.id === joke.id);
   if (!isDuplicate) {
-    saveUserJokes([joke, ...current]);
+    setStoredJokes([joke, ...current]);
   }
 };
 
 export const removeUserJoke = (id: number) => {
-  const current = getUserJokes().filter((j: Joke) => j.id !== id);
-  saveUserJokes(current);
+  const filtered = getStoredJokes().filter(j => j.id !== id);
+  setStoredJokes(filtered);
 };
 
 export const replaceUserJoke = (id: number, newJoke: Joke) => {
-  const current = getUserJokes().map((j: Joke) => (j.id === id ? newJoke : j));
-  saveUserJokes(current);
+  const updated = getStoredJokes().map(j => (j.id === id ? newJoke : j));
+  setStoredJokes(updated);
+};
+
+export const isUserJoke = (id: number): boolean => {
+  return getStoredJokes().some(j => j.id === id);
 };
