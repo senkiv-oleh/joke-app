@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { Joke } from "../types/joke";
-import { getRandomJoke, getTenJokes } from "../services/jokeService";
+import { useEffect, useState } from 'react';
+import { Joke } from '../types/joke';
+import { getRandomJoke, getTenJokes } from '../services/jokeService';
 import {
   getUserJokes,
   addUserJoke,
   removeUserJoke,
   replaceUserJoke,
-  isUserJoke
-} from "../utils/storage";
-import { getUniqueJokes } from "../utils/helpers";
-import { TEN_RANDOM_JOKES } from "../constants/constants";
+  isUserJoke,
+} from '../utils/storage';
+import { getUniqueJokes } from '../utils/helpers';
+import { TEN_RANDOM_JOKES } from '../constants/constants';
 
 export const useJokes = () => {
   const [jokes, setJokes] = useState<Joke[]>([]);
@@ -33,8 +33,7 @@ export const useJokes = () => {
       const newBatch = await getTenJokes();
 
       const unique = newBatch.filter(
-        (joke: Joke) =>
-          !existingIds.has(joke.id) && !result.some(j => j.id === joke.id)
+        (joke: Joke) => !existingIds.has(joke.id) && !result.some(j => j.id === joke.id)
       );
 
       result.push(...unique.slice(0, TEN_RANDOM_JOKES - result.length));

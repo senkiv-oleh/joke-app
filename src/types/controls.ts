@@ -1,4 +1,4 @@
-import { Joke } from "../types/joke";
+import { Joke } from '../types/joke';
 
 export interface JokeProps {
   onDelete: (id: number) => void;

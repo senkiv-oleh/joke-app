@@ -1,12 +1,13 @@
-
 # Joke App
 
 A simple React + TypeScript app that displays random jokes and lets users refresh or delete them. Built with Material UI for modern styling.
 
 ## Demo
+
 [Demo Link](https://senkiv-oleh.github.io/joke-app/)
 
 ## Tech Stack
+
 - React 19
 - TypeScript
 - Material UI (MUI)
@@ -21,7 +22,7 @@ Make sure you have **Node.js** and **npm** installed.
 git clone https://github.com/senkiv-oleh/joke-app.git
 cd joke-app
 npm install
-````
+```
 
 ## Start the App
 
@@ -31,14 +32,14 @@ npm start
 
 The app will run locally at: [http://localhost:3000](http://localhost:3000)
 
-##  Features
+## Features
 
-* Fetches random jokes from an API
-* Delete jokes from the list
-* Refresh a joke
-* Responsive and clean UI with MUI components
+- Fetches random jokes from an API
+- Delete jokes from the list
+- Refresh a joke
+- Responsive and clean UI with MUI components
 
-##  Folder Structure
+## Folder Structure
 
 ```
 src/
@@ -59,19 +60,18 @@ src/
 └── reportWebVitals.ts
 ```
 
-##  Scripts
+## Scripts
 
-* `npm start` — run the dev server
-* `npm run build` — build for production
-* `npm test` — run tests
+- `npm start` — run the dev server
+- `npm run build` — build for production
+- `npm test` — run tests
 
-##  Author
+## Author
+
 Oleh Senkiv
-[GitHub](https://github.com/senkiv-oleh) | 
-[LinkedIn](https://www.linkedin.com/in/oleh-senkiv-5a78b3177/) | 
+[GitHub](https://github.com/senkiv-oleh) |
+[LinkedIn](https://www.linkedin.com/in/oleh-senkiv-5a78b3177/) |
 
-
-##  License
+## License
 
 MIT License © 2025 Oleh Senkiv
-

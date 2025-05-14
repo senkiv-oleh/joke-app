@@ -1,5 +1,5 @@
-import { Joke } from "../types/joke";
-import { STORAGE_KEY } from "../constants/constants";
+import { Joke } from '../types/joke';
+import { STORAGE_KEY } from '../constants/constants';
 
 const getStoredJokes = (): Joke[] => {
   const data = localStorage.getItem(STORAGE_KEY);

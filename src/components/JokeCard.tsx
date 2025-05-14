@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Card, CardContent, Typography, Stack, Button } from "@mui/material";
-import { Joke } from "../types/joke";
-import { JokeProps } from "../types/controls";
+import React, { useState } from 'react';
+import { Card, CardContent, Typography, Stack, Button } from '@mui/material';
+import { Joke } from '../types/joke';
+import { JokeProps } from '../types/controls';
 
 type JokeCardProps = JokeProps & { joke: Joke };
 
@@ -19,15 +19,15 @@ const JokeCard: React.FC<JokeCardProps> = ({ joke, onDelete, onRefresh }) => {
   return (
     <Card
       sx={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
         minHeight: 250,
-        height: "100%",
-        backgroundColor: "#f9f9f9",
+        height: '100%',
+        backgroundColor: '#f9f9f9',
         borderRadius: 2,
         boxShadow: 3,
-        border: "1px solid #ccc"
+        border: '1px solid #ccc',
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -35,10 +35,10 @@ const JokeCard: React.FC<JokeCardProps> = ({ joke, onDelete, onRefresh }) => {
       <CardContent
         sx={{
           flexGrow: 1,
-          justifyContent: "space-between",
-          display: "flex",
-          flexDirection: "column",
-          position: "relative"
+          justifyContent: 'space-between',
+          display: 'flex',
+          flexDirection: 'column',
+          position: 'relative',
         }}
       >
         <Stack>
@@ -46,7 +46,7 @@ const JokeCard: React.FC<JokeCardProps> = ({ joke, onDelete, onRefresh }) => {
             variant="body2"
             color="text.secondary"
             gutterBottom
-            style={{ fontWeight: "bold" }}
+            style={{ fontWeight: 'bold' }}
           >
             {joke.id}
           </Typography>
@@ -55,7 +55,7 @@ const JokeCard: React.FC<JokeCardProps> = ({ joke, onDelete, onRefresh }) => {
             sx={{
               mt: 1,
 
-              fontWeight: "bold"
+              fontWeight: 'bold',
             }}
           >
             Setup:
@@ -69,7 +69,7 @@ const JokeCard: React.FC<JokeCardProps> = ({ joke, onDelete, onRefresh }) => {
             sx={{
               mt: 1,
 
-              fontWeight: "bold"
+              fontWeight: 'bold',
             }}
           >
             Punchline:
@@ -78,27 +78,27 @@ const JokeCard: React.FC<JokeCardProps> = ({ joke, onDelete, onRefresh }) => {
             variant="body1"
             color="text.secondary"
             sx={{
-              textOverflow: "ellipsis",
-              overflow: "hidden",
-              paddingTop: "10px"
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              paddingTop: '10px',
             }}
           >
             {joke.punchline}
           </Typography>
         </Stack>
 
-        {isHovered &&
+        {isHovered && (
           <Stack
             direction="row"
             spacing={1}
             sx={{
-              position: "absolute",
+              position: 'absolute',
               bottom: 0,
               right: 0,
               left: 0,
-              backgroundColor: "#fff",
-              alignSelf: "flex-end",
-              padding: "10px"
+              backgroundColor: '#fff',
+              alignSelf: 'flex-end',
+              padding: '10px',
             }}
           >
             <Button
@@ -110,14 +110,11 @@ const JokeCard: React.FC<JokeCardProps> = ({ joke, onDelete, onRefresh }) => {
             >
               Delete
             </Button>
-            <Button
-              onClick={() => onRefresh(joke.id)}
-              color="primary"
-              sx={{ flexGrow: 1 }}
-            >
+            <Button onClick={() => onRefresh(joke.id)} color="primary" sx={{ flexGrow: 1 }}>
               Refresh
             </Button>
-          </Stack>}
+          </Stack>
+        )}
       </CardContent>
     </Card>
   );

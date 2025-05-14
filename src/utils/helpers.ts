@@ -1,4 +1,4 @@
-import { Joke } from "../types/joke";
+import { Joke } from '../types/joke';
 
 export const getUniqueJokes = (jokes: Joke[], count: number): Joke[] => {
   const map = new Map<number, Joke>();

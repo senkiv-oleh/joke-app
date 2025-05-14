@@ -1,5 +1,5 @@
-import React from "react";
-import { Stack, Button } from "@mui/material";
+import React from 'react';
+import { Stack, Button } from '@mui/material';
 
 interface ControlsProps {
   onLoadMore: () => void;
@@ -13,17 +13,17 @@ const Controls: React.FC<ControlsProps> = ({ onLoadMore, onAdd }) => {
       spacing={2}
       justifyContent="center"
       sx={{
-        gap: "10px",
-        paddingBottom: "20px",
-        position: "sticky",
-        backgroundColor: "#fff",
+        gap: '10px',
+        paddingBottom: '20px',
+        position: 'sticky',
+        backgroundColor: '#fff',
         zIndex: 1,
-        width: "100%",
-        paddingTop: "20px",
+        width: '100%',
+        paddingTop: '20px',
 
         bottom: 0,
         left: 0,
-        right: 0
+        right: 0,
       }}
     >
       <Button
@@ -31,7 +31,7 @@ const Controls: React.FC<ControlsProps> = ({ onLoadMore, onAdd }) => {
         color="primary"
         onClick={onLoadMore}
         size="large"
-        style={{ width: "200px" }}
+        style={{ width: '200px' }}
       >
         Load More
       </Button>
@@ -40,7 +40,7 @@ const Controls: React.FC<ControlsProps> = ({ onLoadMore, onAdd }) => {
         color="primary"
         onClick={onAdd}
         size="large"
-        style={{ marginLeft: 0, width: "200px" }}
+        style={{ marginLeft: 0, width: '200px' }}
       >
         Add Joke
       </Button>
