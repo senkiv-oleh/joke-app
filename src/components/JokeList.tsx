@@ -11,7 +11,7 @@ interface JokeListProps {
 
 const JokeList: React.FC<JokeListProps> = ({ jokes, onDelete, onRefresh }) => {
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={2} style={{ marginBottom: "40px" }}>
       {jokes.map(joke =>
         <Grid key={joke.id} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
           <JokeCard joke={joke} onDelete={onDelete} onRefresh={onRefresh} />

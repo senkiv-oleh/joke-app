@@ -4,16 +4,7 @@ import JokeList from "./components/JokeList";
 import Controls from "./components/Controls";
 import { replaceUserJoke } from "./utils/storage";
 import { getRandomJoke, getTenJokes } from "./services/jokeService";
-import "./App.css";
 import { Joke } from "./types/joke";
-
-function removeStoredJoke(id: number): void {
-  throw new Error("Function not implemented.");
-}
-
-function storeJoke(newJoke: Joke): void {
-  throw new Error("Function not implemented.");
-}
 
 const App: React.FC = () => {
   const [jokes, setJokes] = useState<Joke[]>([]);
@@ -32,8 +23,8 @@ const App: React.FC = () => {
   }, []);
 
   const handleDelete = (id: number) => {
-    setJokes(prev => prev.filter(j => j.id !== id));
-    removeStoredJoke(id);
+    setJokes(prev => prev.filter((j: Joke) => j.id !== id));
+    console.log("Deleting joke with ID:", id);
   };
 
   const handleRefresh = async (id: number) => {
@@ -64,21 +55,25 @@ const App: React.FC = () => {
     const newJoke = await getRandomJoke();
     if (!jokes.find(j => j.id === newJoke.id)) {
       setJokes(prev => [newJoke, ...prev]);
-      storeJoke(newJoke);
     }
   };
 
   return (
-    <Container maxWidth="lg">
-      <Typography variant="h4" align="center" gutterBottom style={{ margin: 30, fontWeight: "bold" }}>
+    <Container maxWidth="lg" style={{ boxSizing: "border-box" }}>
+      <Typography
+        variant="h4"
+        align="center"
+        gutterBottom
+        style={{ margin: 30, fontWeight: "bold" }}
+      >
         Joke LIST
       </Typography>
+      <Controls onLoadMore={handleLoadMore} onAdd={handleAdd} />
       <JokeList
         jokes={jokes}
         onDelete={handleDelete}
         onRefresh={handleRefresh}
       />
-      <Controls onLoadMore={handleLoadMore} onAdd={handleAdd} />
     </Container>
   );
 };
