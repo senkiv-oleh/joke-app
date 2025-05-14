@@ -1,4 +1,3 @@
-// types/joke.ts
 export interface Joke {
   id: number;
   type: string;
